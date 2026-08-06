@@ -28,13 +28,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   dog: {
-    width: '100%',
-    height: 239,
+    width: '70%',
+    height: '50%',
+    resizeMode: 'contain',
   },
   go: {
     width: 20,
     height: 20,
-    marginRight: 10,
+    right: 60,
   },
   text1: {
     fontSize: 30,
@@ -63,16 +64,18 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     width: '80%'
   },
   button1: {
-    marginTop: 20,
+    marginTop: 10,
     backgroundColor: '#fff',
     padding: 5,
     borderWidth: 1,
     borderColor: '#00e47a',
     borderRadius: 7,
     alignItems: 'center',
-    width: '80%'
+    justifyContent: 'center',
+    width: '80%',
   },
 });
