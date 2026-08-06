@@ -6,7 +6,7 @@ const FisrtScreen = ({navigation}) =>{
         <View style={styles.first}>
             <TouchableOpacity
                 onPress={() =>{
-                    navigation.navigation("Home")
+                    navigation.navigate("Home")
                 }}
             >
                 <Image source={require('../img/logotipo.png')} />
@@ -20,7 +20,7 @@ export default FisrtScreen;
 const styles = StyleSheet.create({
   first: {
     flex: 1,
-    backgroundColor: '#4dff00',
+    backgroundColor: '#00e47a',
     alignItems: 'center',
     justifyContent: 'center',
   },
