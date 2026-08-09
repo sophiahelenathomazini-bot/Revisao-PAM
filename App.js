@@ -9,7 +9,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Fisrt">
+      <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Fisrt">
         <Stack.Screen name="Fisrt" component={FisrtScreen}/>
         <Stack.Screen name="Home" component={HomeScreen}/>
         <Stack.Screen name="Login" component={LoginScreen}/>
