@@ -7,59 +7,95 @@ const RegistrationScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [criar, setCriar] = useState('');
   const [repetir, setRepetir] = useState('');
+  const [error, setError] = useState('');
+  const [errorEmail, setErrorEmail] = useState('');
+  const [errorRepetir, setErrorRepetir] = useState('');
+  const [errorCriar, setErrorCriar] = useState('');
+
+  function verificar() {
+
+    if(criar === '') {
+        setErrorCriar('É preciso digitar uma senha');
+      } else {
+        setErrorCriar('');
+      }
+
+    if(repetir === '') {
+      setErrorRepetir('É preciso digitar uma senha');
+      } else if (repetir !== criar && criar !== '') {
+          setErrorRepetir('As senhas devem ser iguais');
+          setErrorCriar('As senhas devem ser iguais');
+        } else {
+          setErrorRepetir('');
+        }
+
+    if (email === '') {
+        setErrorEmail('É preciso digitar um e-mail');
+      } else {
+        setErrorEmail('');
+      }
+  };
 
     return(
-        <View style={styles.login}>
+      <View style={styles.login}>
 
-          <TouchableOpacity onPress={() => navigation.goBack("Login")}>
-          <Image source={require('../img/seta.png')} style={styles.seta}/>
-          </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Image source={require('../img/seta.png')} style={styles.seta}/>
+        </TouchableOpacity>
 
-          <Text style={styles.texto}>Cadastre-se</Text>
-          <Text style={styles.texto1}>Informe seu E-mail e crie uma senha</Text>
+        <Text style={styles.texto}>Cadastre-se</Text>
+        <Text style={styles.texto1}>Informe seu E-mail e crie uma senha</Text>
 
-          <Text style={styles.texto2}>E-mail</Text>
-          <TextInput style={styles.input}
-            placeholder="Digite seu E-mail"
-            placeholderTextColor='gray'
-            onChangeText={setEmail}
-            value={email}
-          />
+        <Text style={styles.texto2}>E-mail</Text>
+        <TextInput style={styles.input}
+          placeholder="Digite seu E-mail"
+          placeholderTextColor='gray'
+          onChangeText={setEmail}
+          value={email}
+        />
 
-          <Text style={styles.texto2}>Crie uma senha</Text>
-          <TextInput style={styles.input}
-            placeholder="Digite sua senha"
-            placeholderTextColor='gray'
-            onChangeText={setCriar}
-            value={criar}
-            secureTextEntry = {true}
-          />
+        {errorEmail ? <Text style={styles.erro}>{errorEmail}</Text> : null}
 
-          <Text style={styles.texto2}>Repita a senha</Text>
-          <TextInput style={styles.input}
-            placeholder="Repita sua senha"
-            placeholderTextColor='gray'
-            onChangeText={setRepetir}
-            value={repetir}
-            secureTextEntry = {true}
-          />
+        <Text style={styles.texto2}>Crie uma senha</Text>
+        <TextInput style={styles.input}
+          placeholder="Digite sua senha"
+          placeholderTextColor='gray'
+          onChangeText={setCriar}
+          value={criar}
+          secureTextEntry = {true}
+        />
 
-            <TouchableOpacity style={styles.btn}>
-              <Text style={styles.texto4}>Cadastrar</Text>
-            </TouchableOpacity>
+      {errorCriar ? <Text style={styles.erro}>{errorCriar}</Text> : null}
+      {error ? <Text style={styles.erro}>{error}</Text> : null}
 
-          <View style={styles.linhaContainer}>
-            <View style={styles.linha}></View>
-            <Text style={styles.texto5}>Ou continue com</Text>
-            <View style={styles.linha}></View>
-          </View>
+        <Text style={styles.texto2}>Repita a senha</Text>
+        <TextInput style={styles.input}
+          placeholder="Repita sua senha"
+          placeholderTextColor='gray'
+          onChangeText={setRepetir}
+          value={repetir}
+          secureTextEntry = {true}
+        />
 
-          <View style={styles.iconsContainer}>
-            <Image style={styles.icons} source={require('../img/Google.png')} />
-            <Image style={styles.icons} source={require('../img/Facebook.png')} />
-          </View>
+        {errorRepetir ? <Text style={styles.erro}>{errorRepetir}</Text> : null}
+        {error ? <Text style={styles.erro}>{error}</Text> : null}
 
+        <TouchableOpacity style={styles.btn} onPress={verificar}>
+          <Text style={styles.texto4}>Cadastrar</Text>
+        </TouchableOpacity>
+
+        <View style={styles.linhaContainer}>
+          <View style={styles.linha}></View>
+          <Text style={styles.texto5}>Ou continue com</Text>
+          <View style={styles.linha}></View>
         </View>
+
+        <View style={styles.iconsContainer}>
+          <Image style={styles.icons} source={require('../img/Google.png')} />
+          <Image style={styles.icons} source={require('../img/Facebook.png')} />
+        </View>
+
+      </View>
     );
 }
 
@@ -137,5 +173,8 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     marginTop: 30,
+  },
+  erro:{
+    color: 'red',
   },
 });
